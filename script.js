@@ -23,9 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     expression.value = expression.value.slice(0, -4);
                     openBrackets--;
                 } else {
+                    if (expression.value.endsWith('(')) openBrackets--;
+					if (expression.value.endsWith(')')) openBrackets++;
                     expression.value = expression.value.slice(0, -1);
-                    if (expression.value.endsWith('(')) openBrackets++;
-                    if (expression.value.endsWith(')')) openBrackets--;
+                    //if (expression.value.endsWith('(')) openBrackets++;
+                    //if (expression.value.endsWith(')')) openBrackets--;
                 }
                 lastInputWasTrig = false;
             } else if (value === '=') {
