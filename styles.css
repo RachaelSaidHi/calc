@@ -22,7 +22,7 @@ body {
     border-radius: 0.75rem;
     padding: 1rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
-    width: 20rem; /* Reduced from 25rem */
+    width: 20rem;
 }
 
 .display {
