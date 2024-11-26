@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         expr += ')';
                     }
                     const answer = calculateExpression(expr);
-                    //result.textContent = Number.isInteger(answer) ? answer : answer.toFixed(6);
+                    
                 } catch (error) {
                     result.textContent = 'Error';
                     console.error(error);
