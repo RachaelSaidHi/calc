@@ -10,12 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             const value = button.getAttribute('data-value');
 
+	    //clear button, resets everything
             if (value === 'C') {
                 expression.value = '';
                 result.textContent = '';
                 lastInputWasTrig = false;
                 openBrackets = 0;
+		    
+	    //backspace button
             } else if (value === '⌫') {
+		//if trig or log funciton, must backspace entire function 
                 if (expression.value.endsWith('sin(') || 
                     expression.value.endsWith('cos(') || 
                     expression.value.endsWith('tan(') ||
@@ -24,10 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     openBrackets--;
                 } else {
                     if (expression.value.endsWith('(')) openBrackets--;
-					if (expression.value.endsWith(')')) openBrackets++;
+		    if (expression.value.endsWith(')')) openBrackets++;
                     expression.value = expression.value.slice(0, -1);
-                    //if (expression.value.endsWith('(')) openBrackets++;
-                    //if (expression.value.endsWith(')')) openBrackets--;
                 }
                 lastInputWasTrig = false;
             } else if (value === '=') {
