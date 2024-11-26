@@ -10,16 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             const value = button.getAttribute('data-value');
 
-	    //clear button, resets everything
             if (value === 'C') {
                 expression.value = '';
                 result.textContent = '';
                 lastInputWasTrig = false;
                 openBrackets = 0;
-		    
-	    //backspace button
             } else if (value === '⌫') {
-		//if trig or log funciton, must backspace entire function 
                 if (expression.value.endsWith('sin(') || 
                     expression.value.endsWith('cos(') || 
                     expression.value.endsWith('tan(') ||
@@ -27,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     expression.value = expression.value.slice(0, -4);
                     openBrackets--;
                 } else {
-                    if (expression.value.endsWith('(')) openBrackets--;
-		    if (expression.value.endsWith(')')) openBrackets++;
                     expression.value = expression.value.slice(0, -1);
+                    if (expression.value.endsWith('(')) openBrackets++;
+                    if (expression.value.endsWith(')')) openBrackets--;
                 }
                 lastInputWasTrig = false;
             } else if (value === '=') {
@@ -39,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         expr += ')';
                     }
                     const answer = calculateExpression(expr);
-                    result.textContent = Number.isInteger(answer) ? answer : answer.toFixed(6); 
+                    result.textContent = Number.isInteger(answer) ? answer : answer.toFixed(6);
                 } catch (error) {
                     result.textContent = 'Error';
                     console.error(error);
@@ -284,4 +280,3 @@ function evaluatePostfix(postfix) {
     
     return stack[0];
 }
-
